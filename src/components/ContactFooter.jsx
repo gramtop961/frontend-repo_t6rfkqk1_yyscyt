@@ -1,5 +1,6 @@
 import { Mail, Linkedin, Send } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function ContactFooter() {
   return (
@@ -17,20 +18,20 @@ export default function ContactFooter() {
 
 function ContactCard() {
   return (
-    <div className="rounded-2xl border border-teal-200 bg-white p-6 shadow-sm">
+    <motion.div className="rounded-2xl border border-teal-200 bg-white p-6 shadow-sm" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
       <h3 className="text-xl font-semibold text-slate-900">Let’s collaborate</h3>
       <p className="mt-2 text-slate-700 text-sm">
         For research collaborations, speaking engagements, or program partnerships, feel free to reach out.
       </p>
       <div className="mt-5 space-y-3">
-        <a href="mailto:contact@example.com" className="flex items-center gap-2 text-teal-700 hover:underline">
-          <Mail className="h-5 w-5" /> contact@example.com
+        <a href="mailto:dr.fatuma@example.com" className="flex items-center gap-2 text-teal-700 hover:underline">
+          <Mail className="h-5 w-5" /> dr.fatuma@example.com
         </a>
         <a href="#" className="flex items-center gap-2 text-teal-700 hover:underline">
           <Linkedin className="h-5 w-5" /> LinkedIn
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -43,11 +44,11 @@ function ContactForm() {
     e.preventDefault();
     const subject = encodeURIComponent(`Inquiry from ${name}`);
     const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
-    window.location.href = `mailto:contact@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:dr.fatuma@example.com?subject=${subject}&body=${body}`;
   };
 
   return (
-    <form onSubmit={onSubmit} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <motion.form onSubmit={onSubmit} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm text-slate-600">Name</label>
@@ -65,7 +66,7 @@ function ContactForm() {
       <button type="submit" className="mt-5 inline-flex items-center gap-2 rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-teal-700">
         <Send className="h-4 w-4" /> Send Message
       </button>
-    </form>
+    </motion.form>
   );
 }
 

@@ -1,18 +1,26 @@
 import Spline from '@splinetool/react-spline';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative h-[80vh] w-full overflow-hidden">
+    <section id="home" className="relative h-[86vh] w-full overflow-hidden">
       <div className="absolute inset-0">
         <Spline scene="https://prod.spline.design/2fSS9b44gtYBt4RI/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/30 via-black/20 to-white" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/50 via-black/30 to-white" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 h-full flex items-center">
-        <div className="text-white max-w-2xl">
-          <p className="uppercase tracking-widest text-sm text-teal-200/90">Medical Doctor • Researcher • Public Health Advocate</p>
-          <h1 className="mt-3 text-3xl sm:text-5xl font-bold leading-tight">
+        <motion.div
+          className="text-white max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs tracking-wide text-teal-100">
+            Advancing equitable care
+          </span>
+          <h1 className="mt-4 text-3xl sm:text-5xl font-bold leading-tight">
             Empowering Communities Through Healthcare and Education
           </h1>
           <p className="mt-4 text-white/90 text-base sm:text-lg">
@@ -26,6 +34,12 @@ export default function Hero() {
               Learn More
             </a>
           </div>
+        </motion.div>
+      </div>
+
+      <div className="absolute bottom-0 inset-x-0">
+        <div className="mx-auto max-w-6xl px-4 pb-4">
+          <div className="h-2 w-28 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400/80" />
         </div>
       </div>
     </section>

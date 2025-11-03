@@ -5,7 +5,7 @@ import ContactFooter from './components/ContactFooter';
 
 function App() {
   return (
-    <div className="min-h-screen font-inter bg-white text-slate-900">
+    <div className="min-h-screen font-inter bg-white text-slate-900 scroll-smooth">
       <Navbar />
       <Hero />
       <Sections />

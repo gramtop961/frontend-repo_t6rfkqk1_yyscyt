@@ -1,4 +1,5 @@
-import { Briefcase, GraduationCap, BookOpen, ExternalLink, Calendar, Building, Award, Rocket } from 'lucide-react';
+import { Briefcase, GraduationCap, BookOpen, ExternalLink, Calendar, Building, Award, Rocket, Sparkles, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Sections() {
   return (
@@ -15,9 +16,13 @@ export default function Sections() {
 function SectionShell({ id, eyebrow, title, children }) {
   return (
     <section id={id} className="scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
-        <p className="text-teal-700/80 font-medium tracking-wide uppercase text-xs">{eyebrow}</p>
-        <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-slate-900">{title}</h2>
+      <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }}>
+          <p className="inline-flex items-center gap-2 text-teal-700/90 font-medium tracking-wide uppercase text-[11px]">
+            <Sparkles className="h-4 w-4" /> {eyebrow}
+          </p>
+          <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-slate-900">{title}</h2>
+        </motion.div>
         <div className="mt-6 md:mt-8">{children}</div>
       </div>
     </section>
@@ -28,15 +33,20 @@ function About() {
   return (
     <SectionShell id="about" eyebrow="About" title="Healthcare leadership with academic rigor and community impact">
       <div className="grid md:grid-cols-3 gap-8 items-start">
-        <div className="md:col-span-2 text-slate-700 leading-relaxed">
+        <motion.div className="md:col-span-2 text-slate-700 leading-relaxed" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <p>
             Dr. Fatuma Ayan Aden is a medical doctor and public health leader committed to advancing equitable healthcare systems, strengthening community-based interventions, and mentoring the next generation of health professionals.
           </p>
           <p className="mt-4">
             Her work bridges clinical practice, health policy, and academic research, with a focus on maternal and child health, preventive medicine, and health systems strengthening in underserved communities.
           </p>
-        </div>
-        <div className="rounded-xl border border-slate-200 p-5 bg-white shadow-sm">
+          <div className="mt-6">
+            <a href="#contact" className="inline-flex items-center gap-2 rounded-md border border-teal-200 bg-teal-50 px-4 py-2 text-sm text-teal-700 hover:bg-teal-100">
+              Connect for collaborations <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </motion.div>
+        <motion.div className="rounded-xl border border-slate-200 p-5 bg-white shadow-sm" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
           <h3 className="font-semibold text-slate-900">Core Focus Areas</h3>
           <ul className="mt-3 space-y-2 text-sm text-slate-700">
             <li>• Public health leadership & policy</li>
@@ -44,7 +54,7 @@ function About() {
             <li>• Academic teaching & mentorship</li>
             <li>• Research and evidence-based practice</li>
           </ul>
-        </div>
+        </motion.div>
       </div>
     </SectionShell>
   );
@@ -76,11 +86,11 @@ function Experience() {
     <SectionShell id="experience" eyebrow="Experience" title="Professional experience and leadership roles">
       <ol className="relative border-l border-slate-200 ml-3">
         {items.map((item, idx) => (
-          <li key={idx} className="ml-6 mb-8">
+          <motion.li key={idx} className="ml-6 mb-8" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.06 }}>
             <span className="absolute -left-3.5 flex h-7 w-7 items-center justify-center rounded-full bg-teal-600 text-white shadow">
               <Briefcase className="h-4 w-4" />
             </span>
-            <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex flex-wrap items-center gap-2">
                 <h3 className="font-semibold text-slate-900">{item.title}</h3>
                 <span className="text-slate-400">•</span>
@@ -91,7 +101,7 @@ function Experience() {
               </div>
               <p className="mt-3 text-slate-700 text-sm leading-relaxed">{item.impact}</p>
             </div>
-          </li>
+          </motion.li>
         ))}
       </ol>
     </SectionShell>
@@ -109,7 +119,7 @@ function Education() {
     <SectionShell id="education" eyebrow="Education & Certifications" title="Academic background and professional training">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map((it, idx) => (
-          <div key={idx} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <motion.div key={idx} className="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition-shadow" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.05 }}>
             <div className="flex items-center gap-2 text-teal-700">
               <GraduationCap className="h-5 w-5" />
               <span className="text-sm font-medium">{it.inst}</span>
@@ -119,7 +129,7 @@ function Education() {
             <div className="mt-3 inline-flex items-center gap-1 text-xs text-slate-500">
               <Award className="h-4 w-4" /> Recognitions: Excellence in Teaching & Community Service
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </SectionShell>
@@ -152,7 +162,7 @@ function Publications() {
     <SectionShell id="publications" eyebrow="Publications & Research" title="Selected publications and research contributions">
       <div className="space-y-4">
         {pubs.map((p, idx) => (
-          <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+          <motion.div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 rounded-lg border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.05 }}>
             <div>
               <div className="flex items-center gap-2 text-slate-900 font-medium">
                 <BookOpen className="h-4 w-4 text-teal-700" />
@@ -165,7 +175,7 @@ function Publications() {
                 View <ExternalLink className="h-4 w-4" />
               </a>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -200,14 +210,24 @@ function Projects() {
     <SectionShell id="projects" eyebrow="Projects & Initiatives" title="Selected programs and leadership initiatives">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((proj, idx) => (
-          <div key={idx} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center gap-2 text-teal-700">
-              <Rocket className="h-5 w-5" />
-              <span className="text-sm font-medium">Health Impact</span>
+          <motion.div
+            key={idx}
+            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: idx * 0.05 }}
+          >
+            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-teal-50 to-cyan-50" />
+            <div className="relative">
+              <div className="flex items-center gap-2 text-teal-700">
+                <Rocket className="h-5 w-5" />
+                <span className="text-sm font-medium">Health Impact</span>
+              </div>
+              <h3 className="mt-2 font-semibold text-slate-900">{proj.name}</h3>
+              <p className="mt-2 text-sm text-slate-700 leading-relaxed">{proj.desc}</p>
             </div>
-            <h3 className="mt-2 font-semibold text-slate-900">{proj.name}</h3>
-            <p className="mt-2 text-sm text-slate-700 leading-relaxed">{proj.desc}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </SectionShell>
